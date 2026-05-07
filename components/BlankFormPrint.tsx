@@ -18,7 +18,6 @@ const CSS = `
   tr:nth-child(even) td { background: #f9fafb; }
   .section-title { font-size: 13px; font-weight: 700; margin: 18px 0 6px 0; border-left: 4px solid #374151; padding-left: 8px; }
   .footer { display: flex; justify-content: space-between; font-size: 10px; color: #6b7280; margin-top: 8px; padding-top: 6px; border-top: 1px solid #e5e7eb; }
-  .hint { background: #eff6ff; color: #1d4ed8; padding: 6px 10px; border-radius: 4px; font-size: 10px; margin-bottom: 10px; }
   @media print { body { padding: 10px; } }
 `;
 
@@ -72,7 +71,6 @@ export default function BlankFormPrint({ result }: Props) {
     const html = `
       <h2>📋 빈 양식 — ${formTitle}</h2>
       ${approvalBox()}
-      <div class="hint">💡 ${result.blankForm?.usageGuide || '해당 서식을 작성하여 보관하세요.'}</div>
       <table><tr>${headerRow}</tr>${dataRows}</table>
       ${footer()}
     `;
@@ -93,7 +91,6 @@ export default function BlankFormPrint({ result }: Props) {
     const html = `
       <h2>✅ 빈 체크리스트 — ${docName}</h2>
       ${approvalBox()}
-      <div class="hint">💡 점검 후 결과란에 ○/× 를 기입하고, 미흡 시 조치사항을 기재하세요.</div>
       <table>
         <tr><th style="width:28px">번호</th><th>점검항목</th><th style="width:60px">주기</th><th style="width:72px">담당부서</th><th style="width:60px">결과</th><th>조치사항</th></tr>
         ${rows}
@@ -110,7 +107,6 @@ export default function BlankFormPrint({ result }: Props) {
     const html = `
       <h2>📝 빈 기록지 — ${docName}</h2>
       ${approvalBox()}
-      <div class="hint">💡 일시, 내용, 담당자를 순서대로 기입하세요.</div>
       <table>
         <tr><th style="width:28px">번호</th><th style="width:100px">일시</th><th>내용</th><th style="width:72px">담당자</th><th style="width:52px">서명</th></tr>
         ${rows}
@@ -145,9 +141,6 @@ export default function BlankFormPrint({ result }: Props) {
           </button>
         </div>
         <div className="p-4">
-          <p className="text-xs text-blue-600 bg-blue-50 px-3 py-2 rounded mb-3">
-            💡 {result.blankForm?.usageGuide || '해당 서식을 작성하여 보관하세요.'}
-          </p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-xs">
               <thead>
@@ -188,9 +181,6 @@ export default function BlankFormPrint({ result }: Props) {
             </button>
           </div>
           <div className="p-4">
-            <p className="text-xs text-green-600 bg-green-50 px-3 py-2 rounded mb-3">
-              💡 결과란과 조치사항란이 빈칸으로 인쇄됩니다. 점검 후 직접 기입하세요.
-            </p>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse text-xs">
                 <thead>
@@ -239,9 +229,6 @@ export default function BlankFormPrint({ result }: Props) {
           </button>
         </div>
         <div className="p-4">
-          <p className="text-xs text-purple-600 bg-purple-50 px-3 py-2 rounded mb-3">
-            💡 일시, 내용, 담당자, 서명란이 있는 범용 기록지입니다.
-          </p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-xs">
               <thead>
