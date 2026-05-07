@@ -7,18 +7,121 @@ interface ResultTabsProps {
   result: GenerationResult;
 }
 
-type TabKey = 'summary' | 'draft' | 'form' | 'checklist' | 'basis';
+type TabKey = 'summary' | 'draft' | 'form' | 'checklist' | 'blank' | 'basis';
 
 const tabs: { key: TabKey; label: string }[] = [
   { key: 'summary', label: '요약 카드' },
   { key: 'draft', label: '문서 초안' },
   { key: 'form', label: '서식/양식' },
   { key: 'checklist', label: '체크리스트' },
+  { key: 'blank', label: '🖨️ 빈 서식' },
   { key: 'basis', label: '공식 근거' },
 ];
 
+// 마크다운 표에서 헤더만 추출
+function extractTableHeaders(markdown: string): string[] {
+  if (!markdown) return [];
+  const lines = markdown.split('\n').filter(l => l.trim());
+  for (const line of lines) {
+    if (line.trim().startsWith('|')) {
+      if (line.replace(/[\|\-\s:]/g, '').length === 0) continue;
+      const cells = line.split('|').map(c => c.trim()).filter((_, i, arr) => i > 0 && i < arr.length - 1);
+      if (cells.length > 0) return cells;
+    }
+  }
+  return [];
+}
+
+// 빈 양식 표 렌더러
+function BlankTable({ headers, rows = 12, title }: { headers: string[]; rows?: number; title: string }) {
+  if (!headers.length) return null;
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse text-sm">
+        <thead>
+          <tr className="bg-gray-700 text-white">
+            {headers.map((h, i) => (
+              <th key={i} className="border border-gray-500 px-3 py-2 text-center text-xs font-semibold">{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: rows }).map((_, r) => (
+            <tr key={r} className={r % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+              {headers.map((_, c) => (
+                <td key={c} className="border border-gray-300 px-3 py-3 text-xs" style={{ minHeight: '32px', minWidth: c === 0 ? '32px' : '80px' }}>
+                  {c === 0 ? <span className="text-gray-400">{r + 1}</span> : ''}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+// 빈 서식 카드 컴포넌트
+function BlankFormCard({ title, children, printId }: { title: string; children: React.ReactNode; printId: string }) {
+  return (
+    <div id={printId} className="bg-white border border-gray-300 rounded-lg overflow-hidden">
+      {/* 헤더 */}
+      <div className="bg-gray-800 text-white flex items-center justify-between px-4 py-3">
+        <h3 className="text-sm font-black tracking-wide">{title}</h3>
+        <button
+          onClick={() => {
+            const el = document.getElementById(printId);
+            if (!el) return;
+            const w = window.open('', '_blank');
+            if (!w) return;
+            w.document.write(`<html><head><title>${title}</title><style>body{font-family:sans-serif;padding:20px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #555;padding:6px 10px;font-size:11px}th{background:#374151;color:white}tr:nth-child(even) td{background:#f9fafb}.approval{display:flex;justify-content:flex-end;margin-bottom:12px}.approval table th{background:#f3f4f6;color:#374151;width:64px;text-align:center}.approval table td{height:40px;width:64px}.footer{display:flex;justify-content:space-between;font-size:10px;color:#6b7280;margin-top:8px;padding-top:8px;border-top:1px solid #e5e7eb}@media print{button{display:none}}</style></head><body>${el.innerHTML}</body></html>`);
+            w.document.close();
+            w.print();
+          }}
+          className="text-xs bg-white text-gray-800 px-3 py-1 rounded font-medium hover:bg-gray-100 transition-colors"
+        >
+          🖨️ 인쇄
+        </button>
+      </div>
+
+      {/* 결재란 */}
+      <div className="approval flex justify-end p-3 border-b border-gray-200 bg-gray-50">
+        <table className="border-collapse text-xs">
+          <thead>
+            <tr>
+              {['담당', '팀장', '부서장', '병원장'].map(h => (
+                <th key={h} className="border border-gray-400 px-4 py-1 bg-gray-100 font-semibold text-gray-700 w-16 text-center">{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {[0,1,2,3].map(i => <td key={i} className="border border-gray-400 h-10 w-16" />)}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* 내용 */}
+      <div className="p-4 space-y-2">
+        {children}
+      </div>
+
+      {/* 하단 */}
+      <div className="px-4 py-2 bg-gray-50 border-t border-gray-200 flex justify-between text-xs text-gray-500">
+        <span>문서번호: ___________</span>
+        <span>작성일: ___________</span>
+        <span>작성자: ___________</span>
+      </div>
+    </div>
+  );
+}
+
 export default function ResultTabs({ result }: ResultTabsProps) {
   const [activeTab, setActiveTab] = useState<TabKey>('summary');
+
+  // 빈 양식용 헤더 추출
+  const formHeaders = extractTableHeaders(result.blankForm?.templateMarkdown || '');
 
   return (
     <div className="mt-6 border border-gray-200 rounded-2xl overflow-hidden">
@@ -159,7 +262,6 @@ export default function ResultTabs({ result }: ResultTabsProps) {
               usageGuide={result.blankForm.usageGuide || ''}
               templateMarkdown={result.blankForm.templateMarkdown || ''}
             />
-            {/* 작성 예시 */}
             {result.filledExample?.exampleMarkdown && (
               <div>
                 <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
@@ -210,6 +312,113 @@ export default function ResultTabs({ result }: ResultTabsProps) {
                 </tbody>
               </table>
             </div>
+          </div>
+        )}
+
+        {/* 🖨️ 빈 서식 탭 */}
+        {activeTab === 'blank' && (
+          <div className="space-y-8">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">🖨️</span>
+              <div>
+                <p className="font-bold text-gray-900">인쇄용 빈 서식</p>
+                <p className="text-xs text-gray-500">내용을 직접 기입할 수 있는 빈 양식입니다. 인쇄 버튼을 눌러 출력하세요.</p>
+              </div>
+            </div>
+
+            {/* 빈 양식 */}
+            <BlankFormCard
+              title={`📋 빈 양식 — ${result.blankForm?.formTitle || result.summaryCard?.documentName || '서식'}`}
+              printId="blank-form-print"
+            >
+              <p className="text-xs text-blue-600 bg-blue-50 px-3 py-2 rounded mb-3">
+                💡 {result.blankForm?.usageGuide || '해당 서식을 작성하여 보관하세요.'}
+              </p>
+              {formHeaders.length > 0 ? (
+                <BlankTable headers={formHeaders} rows={12} title="빈 양식" />
+              ) : (
+                <BlankTable
+                  headers={['항목', '내용', '담당자', '일자', '비고']}
+                  rows={12}
+                  title="빈 양식"
+                />
+              )}
+            </BlankFormCard>
+
+            {/* 빈 체크리스트 */}
+            {result.checklist && result.checklist.length > 0 && (
+              <BlankFormCard
+                title={`✅ 빈 체크리스트 — ${result.summaryCard?.documentName || '점검표'}`}
+                printId="blank-checklist-print"
+              >
+                <p className="text-xs text-green-600 bg-green-50 px-3 py-2 rounded mb-3">
+                  💡 점검 후 결과란에 ✓ 또는 ○/×를 기입하고, 미흡 시 조치사항을 기재하세요.
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse text-sm">
+                    <thead>
+                      <tr className="bg-gray-700 text-white">
+                        <th className="border border-gray-500 px-2 py-2 text-xs w-8">번호</th>
+                        <th className="border border-gray-500 px-3 py-2 text-xs">점검항목</th>
+                        <th className="border border-gray-500 px-2 py-2 text-xs">주기</th>
+                        <th className="border border-gray-500 px-2 py-2 text-xs">담당부서</th>
+                        <th className="border border-gray-500 px-2 py-2 text-xs w-20">결과</th>
+                        <th className="border border-gray-500 px-2 py-2 text-xs">조치사항</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {result.checklist.map((item, i) => (
+                        <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                          <td className="border border-gray-300 px-2 py-2 text-center text-xs font-bold text-gray-500">{i+1}</td>
+                          <td className="border border-gray-300 px-3 py-2 text-xs text-gray-800">{item.item}</td>
+                          <td className="border border-gray-300 px-2 py-2 text-center text-xs text-gray-500">{item.frequency}</td>
+                          <td className="border border-gray-300 px-2 py-2 text-center text-xs text-gray-500">{item.responsibleDepartment}</td>
+                          {/* 결과란 - 완전히 빈칸 */}
+                          <td className="border border-gray-300 px-2 py-3 text-xs"></td>
+                          {/* 조치사항 - 완전히 빈칸 */}
+                          <td className="border border-gray-300 px-2 py-3 text-xs"></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </BlankFormCard>
+            )}
+
+            {/* 빈 기록지 (범용) */}
+            <BlankFormCard
+              title={`📝 빈 기록지 — ${result.summaryCard?.documentName || '기록지'}`}
+              printId="blank-record-print"
+            >
+              <p className="text-xs text-purple-600 bg-purple-50 px-3 py-2 rounded mb-3">
+                💡 자유 서술 기록지입니다. 일시, 내용, 담당자를 순서대로 기입하세요.
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="bg-gray-700 text-white">
+                      <th className="border border-gray-500 px-2 py-2 text-xs w-8">번호</th>
+                      <th className="border border-gray-500 px-3 py-2 text-xs w-28">일시</th>
+                      <th className="border border-gray-500 px-3 py-2 text-xs">내용</th>
+                      <th className="border border-gray-500 px-2 py-2 text-xs w-20">담당자</th>
+                      <th className="border border-gray-500 px-2 py-2 text-xs w-16">서명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Array.from({ length: 15 }).map((_, i) => (
+                      <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                        <td className="border border-gray-300 px-2 py-3 text-center text-xs text-gray-400">{i+1}</td>
+                        <td className="border border-gray-300 px-2 py-3 text-xs"></td>
+                        <td className="border border-gray-300 px-2 py-3 text-xs"></td>
+                        <td className="border border-gray-300 px-2 py-3 text-xs"></td>
+                        <td className="border border-gray-300 px-2 py-3 text-xs"></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </BlankFormCard>
+
           </div>
         )}
 
