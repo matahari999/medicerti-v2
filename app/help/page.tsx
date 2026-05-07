@@ -3,8 +3,8 @@ import { HelpCircle, BookOpen, FileText, ArrowRight, MessageCircle } from 'lucid
 
 const faqs = [
   {
-    q: 'AI가 생성한 문서를 바로 사용할 수 있나요?',
-    a: 'AI가 생성한 문서는 참고용 초안입니다. 반드시 병원 실정에 맞게 수정하고, 공식 인증기준과 비교·검토 후 사용하시기 바랍니다. 의료기관평가인증원의 공식 자료를 함께 확인하는 것을 권장합니다.',
+    q: '메디인이 생성한 문서를 바로 사용할 수 있나요?',
+    a: '메디인이 생성한 문서는 참고용 초안입니다. 반드시 병원 실정에 맞게 수정하고, 공식 인증기준과 비교·검토 후 사용하시기 바랍니다. 의료기관평가인증원의 공식 자료를 함께 확인하는 것을 권장합니다.',
   },
   {
     q: '어떤 병원 유형을 지원하나요?',
@@ -27,7 +27,7 @@ const faqs = [
 const guides = [
   { icon: <FileText className="w-5 h-5 text-blue-500" />, title: '병원 유형 선택', desc: '인증받을 병원 유형을 선택합니다', href: '/hospitals' },
   { icon: <BookOpen className="w-5 h-5 text-green-500" />, title: '기준집 탐색', desc: '공식 인증기준집 목차를 확인합니다', href: '/standards' },
-  { icon: <FileText className="w-5 h-5 text-purple-500" />, title: '문서 생성', desc: 'AI로 필요한 문서를 생성합니다', href: '/generate' },
+  { icon: <FileText className="w-5 h-5 text-purple-500" />, title: '문서 생성', desc: '메디인으로 필요한 문서를 생성합니다', href: '/generate' },
 ];
 
 export default function HelpPage() {

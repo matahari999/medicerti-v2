@@ -11,7 +11,7 @@ const hospitalTypes = [
 ];
 
 const features = [
-  { icon: <Zap className="w-6 h-6 text-blue-500" />, title: 'AI 즉시 생성', desc: 'Gemini AI가 인증 기준에 맞는 문서를 즉시 생성' },
+  { icon: <Zap className="w-6 h-6 text-blue-500" />, title: '메디인 즉시 생성', desc: '메디인이 인증 기준에 맞는 문서를 즉시 생성' },
   { icon: <Shield className="w-6 h-6 text-green-500" />, title: '공식 목차 반영', desc: '의료기관평가인증원 공식 기준집 목차 완전 반영' },
   { icon: <FileText className="w-6 h-6 text-purple-500" />, title: '완전한 문서 패키지', desc: '규정집·서식·체크리스트를 한 번에 생성' },
   { icon: <CheckCircle className="w-6 h-6 text-orange-500" />, title: '6개 병원 유형', desc: '요양·정신·재활·급성기·치과·한방 전문 지원' },
@@ -25,14 +25,14 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium mb-6">
             <Star className="w-4 h-4 text-yellow-300" />
-            AI 기반 의료기관 인증 문서 자동 생성
+            메디인 — 의료기관 인증 문서 자동 생성
           </div>
           <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
             메디인증 문서센터
           </h1>
           <p className="text-xl text-blue-100 mb-8 leading-relaxed">
             의료기관 인증에 필요한 규정집·서식·체크리스트를<br />
-            AI로 자동 생성하는 전문 서비스
+            메디인이 자동 생성하는 전문 서비스
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

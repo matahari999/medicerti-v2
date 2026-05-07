@@ -51,7 +51,7 @@ export default function SamplesPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-black text-gray-900 mb-2">샘플 보기</h1>
-        <p className="text-gray-500">AI가 생성한 문서 샘플을 미리 확인하세요. 실제 생성 시 병원 정보에 맞게 커스터마이징됩니다.</p>
+        <p className="text-gray-500">메디인이 생성한 문서 샘플을 미리 확인하세요. 실제 생성 시 병원 정보에 맞게 커스터마이징됩니다.</p>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -83,7 +83,7 @@ export default function SamplesPage() {
 
       <div className="mt-10 text-center bg-blue-50 rounded-2xl p-8">
         <h2 className="text-xl font-bold text-gray-900 mb-2">직접 생성해보세요</h2>
-        <p className="text-gray-500 mb-4">병원 유형과 요청 내용만 입력하면 AI가 맞춤 문서를 즉시 생성합니다</p>
+        <p className="text-gray-500 mb-4">병원 유형과 요청 내용만 입력하면 메디인이 맞춤 문서를 즉시 생성합니다</p>
         <Link
           href="/generate"
           className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors"

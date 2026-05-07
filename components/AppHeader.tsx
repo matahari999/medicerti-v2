@@ -2,7 +2,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, X, FileText } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import MediLogo from './MediLogo';
 
 const navItems = [
   { href: '/hospitals', label: '병원 유형 선택' },
@@ -21,11 +22,13 @@ export default function AppHeader() {
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-black text-xl text-blue-700">
-            <FileText className="w-6 h-6" />
-            <span>메디인증</span>
-            <span className="text-gray-400 font-normal text-sm hidden sm:inline">문서센터</span>
+          {/* 로고 */}
+          <Link href="/" className="flex items-center gap-2.5">
+            <MediLogo size={34} />
+            <div className="flex flex-col leading-tight">
+              <span className="font-black text-lg text-blue-700 tracking-tight">메디인증</span>
+              <span className="text-gray-400 font-normal text-xs hidden sm:block -mt-0.5">문서센터</span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
@@ -49,8 +52,9 @@ export default function AppHeader() {
           <div className="flex items-center gap-2">
             <Link
               href="/generate"
-              className="hidden sm:inline-flex items-center gap-1 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
             >
+              <MediLogo size={16} />
               문서 생성하기
             </Link>
             <button
@@ -77,9 +81,10 @@ export default function AppHeader() {
             ))}
             <Link
               href="/generate"
-              className="block mt-2 bg-blue-600 text-white text-center px-4 py-2 rounded-lg text-sm font-semibold"
+              className="flex items-center justify-center gap-2 mt-2 bg-blue-600 text-white text-center px-4 py-2 rounded-lg text-sm font-semibold"
               onClick={() => setMobileOpen(false)}
             >
+              <MediLogo size={16} />
               문서 생성하기
             </Link>
           </div>

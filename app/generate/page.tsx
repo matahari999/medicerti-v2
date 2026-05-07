@@ -87,7 +87,7 @@ function GenerateForm() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-6">
         <h1 className="text-3xl font-black text-gray-900 mb-1">문서 생성</h1>
-        <p className="text-gray-500">AI가 인증 기준에 맞는 규정집·서식·체크리스트를 생성합니다</p>
+        <p className="text-gray-500">메디인이 인증 기준에 맞는 규정집·서식·체크리스트를 생성합니다</p>
       </div>
 
       <div className="grid lg:grid-cols-5 gap-6">
@@ -226,7 +226,7 @@ function GenerateForm() {
               {loading ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  AI가 문서를 생성 중입니다...
+                  메디인이 생성중입니다...
                 </>
               ) : (
                 <>
