@@ -17,7 +17,9 @@ export default function StandardsPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-6">
         <h1 className="text-3xl font-black text-gray-900 mb-2">인증기준집 탐색</h1>
-        <p className="text-gray-500">병원 유형별 공식 인증기준집 목차와 각 항목에 필요한 문서를 확인하세요</p>
+        <p className="text-gray-500">
+          병원 유형별 공식 인증기준집 목차를 확인하고, 필요한 문서를 <span className="text-blue-600 font-semibold">클릭 한 번</span>으로 바로 생성하세요
+        </p>
       </div>
 
       {/* 병원 유형 탭 */}
@@ -38,11 +40,21 @@ export default function StandardsPage() {
         ))}
       </div>
 
+      {/* 사용 안내 */}
+      <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-start gap-2">
+        <span className="text-blue-500 text-sm">💡</span>
+        <p className="text-sm text-blue-800">
+          <span className="font-semibold">파란색 = 규정집·지침서</span> &nbsp;
+          <span className="font-semibold text-green-700">초록색 = 서식·양식</span> &nbsp;
+          <span className="font-semibold text-orange-600">주황색 = 체크리스트</span> — 태그를 클릭하면 해당 문서 생성 페이지로 이동합니다
+        </p>
+      </div>
+
       {/* 기준집 정보 */}
       {catalog && (
-        <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-xl flex items-start gap-2">
-          <BookOpen className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
-          <p className="text-sm text-blue-800">{catalog.notice}</p>
+        <div className="mb-4 p-4 bg-gray-50 border border-gray-200 rounded-xl flex items-start gap-2">
+          <BookOpen className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" />
+          <p className="text-sm text-gray-600">{catalog.notice}</p>
         </div>
       )}
 
@@ -51,6 +63,7 @@ export default function StandardsPage() {
         <StandardNavigator
           chapters={catalog.chapters}
           hospitalTypeName={hospital.name}
+          hospitalTypeKey={selectedType}
         />
       )}
     </div>
