@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { GenerationResult } from '@/lib/types';
 import FormRenderer from './FormRenderer';
+import DraftDocumentView from './DraftDocumentView';
 import BlankFormPrint from './BlankFormPrint';
 
 interface ResultTabsProps {
@@ -87,70 +88,12 @@ export default function ResultTabs({ result }: ResultTabsProps) {
           </div>
         )}
 
-        {/* 문서 초안 */}
+        {/* 문서 초안 — 공식 규정 사례집 형식 */}
         {activeTab === 'draft' && result.draftDocument && (
-          <div className="space-y-5 text-sm">
-            <h3 className="font-black text-xl text-gray-900 pb-2 border-b border-gray-200">
-              {result.draftDocument.title}
-            </h3>
-            {[
-              { label: '제1조 목적', content: result.draftDocument.purpose },
-              { label: '제2조 적용 범위', content: result.draftDocument.scope },
-            ].map(({ label, content }) => content && (
-              <div key={label}>
-                <p className="font-bold text-gray-800 mb-1">{label}</p>
-                <p className="text-gray-600 leading-relaxed bg-gray-50 p-3 rounded-lg">{content}</p>
-              </div>
-            ))}
-            {result.draftDocument.definitions?.length > 0 && (
-              <div>
-                <p className="font-bold text-gray-800 mb-2">제3조 용어 정의</p>
-                <ul className="space-y-1">
-                  {result.draftDocument.definitions.map((d, i) => (
-                    <li key={i} className="text-gray-600 text-xs bg-gray-50 px-3 py-1.5 rounded">• {d}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {result.draftDocument.responsibilities?.length > 0 && (
-              <div>
-                <p className="font-bold text-gray-800 mb-2">제4조 책임과 권한</p>
-                <ul className="space-y-1">
-                  {result.draftDocument.responsibilities.map((r, i) => (
-                    <li key={i} className="text-gray-600 text-xs bg-blue-50 px-3 py-1.5 rounded">• {r}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {result.draftDocument.procedure?.length > 0 && (
-              <div>
-                <p className="font-bold text-gray-800 mb-2">제5조 절차</p>
-                <ol className="space-y-2">
-                  {result.draftDocument.procedure.map((step, i) => (
-                    <li key={i} className="flex gap-2 text-gray-700 text-xs">
-                      <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs">{i+1}</span>
-                      <span className="pt-0.5 leading-relaxed">{step.replace(/^\d+\.\s*/, '')}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            )}
-            {result.draftDocument.recordsAndRetention?.length > 0 && (
-              <div>
-                <p className="font-bold text-gray-800 mb-2">제6조 기록 및 보존</p>
-                <ul className="space-y-1">
-                  {result.draftDocument.recordsAndRetention.map((r, i) => (
-                    <li key={i} className="text-gray-600 text-xs bg-gray-50 px-3 py-1.5 rounded">• {r}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {result.disclaimer && (
-              <div className="mt-4 p-3 bg-gray-100 rounded-lg border border-gray-300">
-                <p className="text-xs text-gray-500">{result.disclaimer}</p>
-              </div>
-            )}
-          </div>
+          <DraftDocumentView
+            doc={result.draftDocument}
+            disclaimer={result.disclaimer}
+          />
         )}
 
         {/* 서식/양식 */}

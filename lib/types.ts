@@ -130,6 +130,9 @@ export interface OfficialBasis {
 // =============================================
 export interface DraftDocument {
   title: string;
+  documentNumber?: string;      // 문서번호 (예: 감염 1.3)
+  reviewCycle?: string;         // 검토주기 (예: 1년)
+  relatedDepartment?: string;   // 관련부서
   purpose: string;
   scope: string;
   definitions: string[];
@@ -139,6 +142,9 @@ export interface DraftDocument {
   educationAndTraining: string[];
   monitoring: string[];
   revisionManagement: string[];
+  references?: string[];        // 참고문헌
+  appendices?: string[];        // 부록
+  additionalProvisions?: string; // 부칙
 }
 
 // =============================================
