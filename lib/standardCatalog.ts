@@ -3464,6 +3464,281 @@ const DEFAULT_CHAPTERS: StandardChapter[] = [
 ];
 
 // ──────────────────────────────────────────────
+
+// ══════════════════════════════════════════════
+// 상급종합병원 기준 — 급성기 기반 + 상급종합 특화 항목
+// ══════════════════════════════════════════════
+const TERTIARY_CHAPTERS: StandardChapter[] = [
+  { chapterNumber: '1', chapterTitle: '환자안전보장활동',
+    items: [
+      { itemNumber: '1.1', itemTitle: '환자를 정확하게 확인한다', summary: '두 가지 이상 식별자를 이용한 환자 확인, 고위험 시술 전 Time-out 수행', requiredDocuments: ['환자 확인 규정'], requiredForms: ['환자 확인 오류 보고서','Time-out 체크리스트'], requiredChecklists: ['환자 확인 이행 점검표'], requiredEvidence: ['오류 보고 현황'], officialCheckNeeded: false },
+      { itemNumber: '1.2', itemTitle: '의료진 간 정확한 의사소통', summary: 'SBAR 기반 의사소통, 구두처방·필요시처방(p.r.n) 관리, 인수인계 표준화', requiredDocuments: ['의사소통 규정'], requiredForms: ['구두처방 확인서','SBAR 인수인계지'], requiredChecklists: ['의사소통 점검표'], requiredEvidence: ['구두처방 이행 기록'], officialCheckNeeded: false },
+      { itemNumber: '1.3', itemTitle: '수술·시술 전 안전 확인(Time-out)', summary: '수술·침습 시술 전 환자·부위·술기 정확성 확인 프로세스 운영', requiredDocuments: ['수술 안전 확인 규정'], requiredForms: ['수술 안전 체크리스트(WHO SSC)'], requiredChecklists: ['Time-out 이행 점검표'], requiredEvidence: ['수술 안전 확인 기록'], officialCheckNeeded: false },
+      { itemNumber: '1.4', itemTitle: '낙상 예방활동', summary: '낙상 위험 평가·고위험 예방·재평가·모니터링, 중환자·수술 후 환자 특화 관리', requiredDocuments: ['낙상 예방 규정'], requiredForms: ['낙상 위험 평가도구(Morse/Bobath)','낙상 사고 보고서'], requiredChecklists: ['낙상 예방 점검표'], requiredEvidence: ['낙상 발생률 모니터링'], officialCheckNeeded: false },
+      { itemNumber: '1.5', itemTitle: '손위생 수행', summary: '손위생 수행 규정 수립·이행률 모니터링·자원 제공, ICU·수술실 집중 관리', requiredDocuments: ['손위생 수행 규정'], requiredForms: ['손위생 이행 관찰 기록지'], requiredChecklists: ['손위생 수행률 점검표'], requiredEvidence: ['손위생 수행률 추이'], officialCheckNeeded: false },
+      { itemNumber: '1.6', itemTitle: '신속대응팀(RRT) 운영', summary: '환자 상태 급변 조기 인식·신속대응팀 출동·처치 체계 운영', requiredDocuments: ['신속대응팀 운영 규정'], requiredForms: ['RRT 출동 기록지','조기경보시스템(EWS) 평가지'], requiredChecklists: ['RRT 운영 점검표'], requiredEvidence: ['RRT 출동 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '2', chapterTitle: '진료전달체계와 평가',
+    items: [
+      { itemNumber: '2.1', itemTitle: '외래·응급환자 등록 및 중증도 분류', summary: '외래·응급 등록, 중증도 분류(KTAS) 및 우선순위 진료 체계 운영', requiredDocuments: ['중증도 분류 규정'], requiredForms: ['KTAS 분류 기록지'], requiredChecklists: ['응급 등록 점검표'], requiredEvidence: ['KTAS 분류 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.2', itemTitle: '입원 절차 및 병상 배정 관리', summary: '입원 수속, 중증질환·희귀난치질환 우선 입원 절차 운영', requiredDocuments: ['입원 절차서'], requiredForms: ['입원 동의서','병상 배정 기록지'], requiredChecklists: ['입원 절차 점검표'], requiredEvidence: ['입원 현황 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.3', itemTitle: '중환자실(ICU) 입실·퇴실 기준 관리', summary: 'ICU·NICU·CICU 입퇴실 기준, 집중 모니터링 및 의료진 배치 기준', requiredDocuments: ['중환자실 운영 규정'], requiredForms: ['ICU 입실 평가지'], requiredChecklists: ['ICU 안전 점검표'], requiredEvidence: ['ICU 입퇴실 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.4', itemTitle: '입원환자 초기평가·재평가 및 다학제 진료', summary: '다학제팀(MDT) 구성·진료 계획 수립·시행, 복잡 만성질환 통합 케어', requiredDocuments: ['다학제 진료 규정'], requiredForms: ['다학제 진료 기록지'], requiredChecklists: ['다학제 회의 점검표'], requiredEvidence: ['다학제 진료 현황'], officialCheckNeeded: false },
+      { itemNumber: '2.5', itemTitle: '퇴원·전원·지역사회 연계 관리', summary: '퇴원 계획, 전원 안전, 지역 연계 의료기관 협력 네트워크 운영', requiredDocuments: ['퇴원·전원 절차서'], requiredForms: ['퇴원 교육 기록지','전원 의뢰서'], requiredChecklists: ['퇴원 계획 점검표'], requiredEvidence: ['전원 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.6', itemTitle: '검사실 및 영상검사 운영관리', summary: '검체·영상검사 운영, 위험값(Critical Value) 보고 체계, 방사선 안전', requiredDocuments: ['검사실 운영 규정','방사선 안전관리 규정'], requiredForms: ['위험값 보고 기록지'], requiredChecklists: ['검사실 안전 점검표'], requiredEvidence: ['위험값 보고 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '3', chapterTitle: '전문진료 및 중증질환 관리',
+    items: [
+      { itemNumber: '3.1', itemTitle: '중증·희귀난치질환 진료 체계', summary: '중증질환(암·심뇌혈관·외상 등) 전문 진료 경로 및 희귀난치질환 진단·치료 체계 운영', requiredDocuments: ['중증질환 진료 규정'], requiredForms: ['중증질환 진료 계획서'], requiredChecklists: ['중증질환 관리 점검표'], requiredEvidence: ['중증질환 진료 실적'], officialCheckNeeded: false },
+      { itemNumber: '3.2', itemTitle: '수술·마취·진정 안전 관리', summary: '수술 계획 수립, 마취 전 평가, 진정치료 안전 프로토콜 운영', requiredDocuments: ['수술·마취 안전 규정'], requiredForms: ['마취 전 평가지','수술 동의서'], requiredChecklists: ['수술 안전 점검표'], requiredEvidence: ['수술 결과 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.3', itemTitle: '장기이식 관리', summary: '장기기증·이식 동의, 이식 대기자 관리, 이식 후 추적 관리 체계', requiredDocuments: ['장기이식 관리 규정'], requiredForms: ['이식 동의서','이식 대기 등록지'], requiredChecklists: ['장기이식 절차 점검표'], requiredEvidence: ['이식 수행 기록'], officialCheckNeeded: true },
+      { itemNumber: '3.4', itemTitle: '항암화학요법·방사선치료 안전 관리', summary: '항암제 처방·조제·투여 안전, 방사선치료 계획 및 부작용 모니터링', requiredDocuments: ['항암화학요법 규정'], requiredForms: ['항암제 투여 확인서','부작용 보고서'], requiredChecklists: ['항암요법 안전 점검표'], requiredEvidence: ['항암 투여 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.5', itemTitle: '통증·완화의료·호스피스 서비스', summary: '통증 평가·관리, 말기환자 완화의료·호스피스 연계 서비스 제공', requiredDocuments: ['완화의료 운영 규정'], requiredForms: ['통증 평가지','호스피스 동의서'], requiredChecklists: ['완화의료 점검표'], requiredEvidence: ['통증 관리 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '4', chapterTitle: '의약품관리',
+    items: [
+      { itemNumber: '4.1', itemTitle: '의약품관리체계 및 고위험의약품 관리', summary: '의약품 선정·보관·처방·조제·투여·모니터링 전주기 관리, 고위험의약품 이중 확인', requiredDocuments: ['의약품관리 규정','고위험의약품 관리 지침'], requiredForms: ['고위험의약품 확인서'], requiredChecklists: ['의약품 안전 점검표'], requiredEvidence: ['고위험의약품 투여 기록'], officialCheckNeeded: false },
+      { itemNumber: '4.2', itemTitle: '임상약사 서비스 운영', summary: '입원환자 약물 검토, 중재 기록, 부작용 보고 및 약물 상담 서비스', requiredDocuments: ['임상약사 서비스 규정'], requiredForms: ['약물 중재 기록지'], requiredChecklists: ['임상약사 서비스 점검표'], requiredEvidence: ['약물 중재 현황'], officialCheckNeeded: false },
+      { itemNumber: '4.3', itemTitle: '혈액제제 안전 관리', summary: '혈액형 검사·교차시험·수혈 전 확인·수혈 반응 모니터링', requiredDocuments: ['수혈 안전 규정'], requiredForms: ['수혈 동의서','수혈 반응 보고서'], requiredChecklists: ['수혈 안전 점검표'], requiredEvidence: ['수혈 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '5', chapterTitle: '환자권리 존중 및 보호',
+    items: [
+      { itemNumber: '5.1', itemTitle: '환자 권리 보호 및 불만 처리', summary: '환자 권리 선언, 취약환자 보호, 고충 처리 절차 운영', requiredDocuments: ['환자 권리 규정'], requiredForms: ['고충 접수지'], requiredChecklists: ['환자 권리 점검표'], requiredEvidence: ['고충 처리 기록'], officialCheckNeeded: false },
+      { itemNumber: '5.2', itemTitle: '동의서 관리', summary: '수술·검사·시술·임상연구 등 동의서 취득 절차 및 보관', requiredDocuments: ['동의서 관리 규정'], requiredForms: ['수술 동의서','연구 참여 동의서'], requiredChecklists: ['동의서 이행 점검표'], requiredEvidence: ['동의서 보관 현황'], officialCheckNeeded: false },
+      { itemNumber: '5.3', itemTitle: '임상연구(IRB) 안전 수행', summary: '임상시험심사위원회(IRB) 운영, 연구 대상자 보호, 이상반응 보고', requiredDocuments: ['임상연구 운영 규정'], requiredForms: ['연구 동의서','이상반응 보고서'], requiredChecklists: ['IRB 절차 점검표'], requiredEvidence: ['IRB 심의 기록'], officialCheckNeeded: true },
+      { itemNumber: '5.4', itemTitle: '의료사회복지 서비스', summary: '경제적·심리적·사회적 취약 환자 지원 및 지역사회 자원 연계', requiredDocuments: ['의료사회복지 운영 규정'], requiredForms: ['사회복지 의뢰서'], requiredChecklists: ['사회복지 서비스 점검표'], requiredEvidence: ['사회복지 지원 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '6', chapterTitle: '질 향상 및 환자안전 활동',
+    items: [
+      { itemNumber: '6.1', itemTitle: '환자안전·의료 질 향상 운영체계', summary: '질 향상위원회 운영, 성과지표 선정·모니터링·개선활동', requiredDocuments: ['질 향상 운영 규정'], requiredForms: ['질 향상 활동 보고서'], requiredChecklists: ['질 향상 점검표'], requiredEvidence: ['질 향상 활동 실적'], officialCheckNeeded: false },
+      { itemNumber: '6.2', itemTitle: '환자안전사고 보고 및 분석', summary: '환자안전사고 자발적 보고·분석·개선, 적신호 사건 근본원인분석(RCA)', requiredDocuments: ['환자안전사고 관리 규정'], requiredForms: ['사고 보고서','RCA 양식'], requiredChecklists: ['사고 보고 점검표'], requiredEvidence: ['안전사고 보고 현황'], officialCheckNeeded: false },
+      { itemNumber: '6.3', itemTitle: '표준진료지침(CP) 개발 및 적용', summary: '주요 질환별 임상경로(CP) 개발·적용·평가·개정', requiredDocuments: ['CP 관리 규정'], requiredForms: ['CP 이행 기록지'], requiredChecklists: ['CP 적용 점검표'], requiredEvidence: ['CP 이행률'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '7', chapterTitle: '감염관리',
+    items: [
+      { itemNumber: '7.1', itemTitle: '감염예방·관리 체계 및 프로그램 운영', summary: '감염관리위원회·감염관리실 운영, 연간 감염관리 프로그램 수립·시행', requiredDocuments: ['감염관리 규정'], requiredForms: ['감염관리 회의록'], requiredChecklists: ['감염관리 점검표'], requiredEvidence: ['감염관리 회의 실적'], officialCheckNeeded: false },
+      { itemNumber: '7.2', itemTitle: '의료관련감염(HAI) 감시 및 관리', summary: 'HAI 발생 감시, VAP·CAUTI·CLABSI·수술부위 감염 예방 번들 적용', requiredDocuments: ['HAI 감시 규정'], requiredForms: ['감염 발생 보고서'], requiredChecklists: ['HAI 예방 번들 점검표'], requiredEvidence: ['감염률 모니터링 자료'], officialCheckNeeded: false },
+      { itemNumber: '7.3', itemTitle: '멸균·소독 및 격리 관리', summary: '의료기구 세척·소독·멸균 체계, 격리 주의 유형별 절차 운영', requiredDocuments: ['멸균·소독 규정','격리 지침'], requiredForms: ['멸균 기록지'], requiredChecklists: ['멸균·소독 점검표'], requiredEvidence: ['멸균 기록'], officialCheckNeeded: false },
+      { itemNumber: '7.4', itemTitle: '다제내성균(MDRO) 관리', summary: 'MRSA·VRE·CRE 등 MDRO 환자 감시·격리·전파 예방 관리', requiredDocuments: ['MDRO 관리 규정'], requiredForms: ['MDRO 환자 격리 기록'], requiredChecklists: ['MDRO 관리 점검표'], requiredEvidence: ['MDRO 발생 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '8', chapterTitle: '경영 및 조직운영',
+    items: [
+      { itemNumber: '8.1', itemTitle: '경영진 리더십 및 의료기관 목표 관리', summary: '병원 비전·목표 설정, 경영위원회 운영, 성과 모니터링', requiredDocuments: ['경영 목표 관리 규정'], requiredForms: ['경영 계획서'], requiredChecklists: ['경영 목표 점검표'], requiredEvidence: ['경영 실적 보고'], officialCheckNeeded: false },
+      { itemNumber: '8.2', itemTitle: '전공의 교육 및 수련 관리', summary: '전공의 교육 프로그램 운영, 수련 환경 관리, 수련 평가', requiredDocuments: ['전공의 수련 규정'], requiredForms: ['수련 평가서'], requiredChecklists: ['수련 환경 점검표'], requiredEvidence: ['수련 평가 기록'], officialCheckNeeded: true },
+      { itemNumber: '8.3', itemTitle: '의료기관 윤리위원회 운영', summary: '임상 윤리 자문, 연명의료 결정, 환자·가족 윤리 상담 운영', requiredDocuments: ['윤리위원회 운영 규정'], requiredForms: ['윤리 자문 요청서'], requiredChecklists: ['윤리위원회 운영 점검표'], requiredEvidence: ['윤리 자문 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '9', chapterTitle: '인적자원관리',
+    items: [
+      { itemNumber: '9.1', itemTitle: '직원 채용·자격 확인 및 배치', summary: '면허·자격 검증, 직종별 배치 기준, 수습 기간 평가', requiredDocuments: ['인사 관리 규정'], requiredForms: ['자격 확인 기록지'], requiredChecklists: ['채용 절차 점검표'], requiredEvidence: ['직원 면허 관리 대장'], officialCheckNeeded: false },
+      { itemNumber: '9.2', itemTitle: '직원 교육·훈련 및 역량 평가', summary: '신규·정기 교육 계획 수립, 법정 의무 교육, 역량 평가 시행', requiredDocuments: ['직원 교육 규정'], requiredForms: ['교육 이수 확인서'], requiredChecklists: ['교육 이행 점검표'], requiredEvidence: ['교육 실적 대장'], officialCheckNeeded: false },
+      { itemNumber: '9.3', itemTitle: '직원 안전·보건 관리', summary: '의료종사자 직업성 노출(혈액·방사선·감염 등) 관리, 근무 환경 안전', requiredDocuments: ['직원 안전 관리 규정'], requiredForms: ['노출 보고서'], requiredChecklists: ['직원 건강 점검표'], requiredEvidence: ['직원 건강 검진 기록'], officialCheckNeeded: false },
+      { itemNumber: '9.4', itemTitle: '전문간호사·전문의 자격 관리', summary: '전문간호사·세부전문의 자격 유지, 지속 교육 이수 관리', requiredDocuments: ['전문 자격 관리 규정'], requiredForms: ['자격 갱신 기록지'], requiredChecklists: ['전문 자격 점검표'], requiredEvidence: ['자격 보유 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '10', chapterTitle: '시설 및 환경관리',
+    items: [
+      { itemNumber: '10.1', itemTitle: '의료기기·의료장비 관리', summary: '의료기기 등록·점검·유지보수·폐기 주기 관리, 생명유지장치 우선 점검', requiredDocuments: ['의료기기 관리 규정'], requiredForms: ['의료기기 점검 기록지'], requiredChecklists: ['의료기기 점검표'], requiredEvidence: ['점검 이력'], officialCheckNeeded: false },
+      { itemNumber: '10.2', itemTitle: '의료폐기물 및 환경오염물 관리', summary: '의료폐기물 분리·보관·수거·처리 절차, 환경 오염 예방', requiredDocuments: ['의료폐기물 관리 규정'], requiredForms: ['폐기물 처리 대장'], requiredChecklists: ['폐기물 관리 점검표'], requiredEvidence: ['폐기물 처리 기록'], officialCheckNeeded: false },
+      { itemNumber: '10.3', itemTitle: '화재 안전 및 비상 대응', summary: '화재 예방·대피 훈련, 재해 대응 계획(BCP), 비상 전력 관리', requiredDocuments: ['화재 안전 규정','비상대응 계획서'], requiredForms: ['훈련 참석 확인서'], requiredChecklists: ['화재 안전 점검표'], requiredEvidence: ['훈련 실적'], officialCheckNeeded: false },
+      { itemNumber: '10.4', itemTitle: '방사선 특수 환경 안전 관리', summary: '방사선 구역 관리, 납 차폐 점검, 방사선 종사자 피폭 모니터링', requiredDocuments: ['방사선 안전 관리 규정'], requiredForms: ['피폭 측정 기록지'], requiredChecklists: ['방사선 구역 점검표'], requiredEvidence: ['방사선 피폭 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '11', chapterTitle: '의료정보 및 의무기록 관리',
+    items: [
+      { itemNumber: '11.1', itemTitle: '의무기록 작성·보완·보존', summary: '의무기록 적시 작성, 미완성 기록 관리, 법정 보존 기간 준수', requiredDocuments: ['의무기록 관리 규정'], requiredForms: ['의무기록 점검 목록'], requiredChecklists: ['의무기록 완결도 점검표'], requiredEvidence: ['미완성 기록 현황'], officialCheckNeeded: false },
+      { itemNumber: '11.2', itemTitle: '의료정보 보안 및 개인정보 보호', summary: '전자의무기록(EMR) 접근 권한 관리, 개인정보 암호화, 침해사고 대응', requiredDocuments: ['정보보안 규정'], requiredForms: ['접근 이력 확인서'], requiredChecklists: ['정보보안 점검표'], requiredEvidence: ['접근 권한 관리 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '12', chapterTitle: '성과관리 및 지속 개선',
+    items: [
+      { itemNumber: '12.1', itemTitle: '핵심 성과지표(KPI) 관리', summary: '병원급 KPI 선정·수집·분석·개선활동, 대내외 벤치마킹', requiredDocuments: ['성과지표 관리 규정'], requiredForms: ['KPI 보고서'], requiredChecklists: ['성과지표 점검표'], requiredEvidence: ['KPI 추이 데이터'], officialCheckNeeded: false },
+      { itemNumber: '12.2', itemTitle: '환자경험 조사 및 개선', summary: '입원·외래 환자경험 조사 수행, 결과 분석 및 개선 계획 수립', requiredDocuments: ['환자경험 조사 규정'], requiredForms: ['환자경험 설문지'], requiredChecklists: ['환자경험 개선 점검표'], requiredEvidence: ['환자경험 조사 결과'], officialCheckNeeded: false },
+    ],
+  },
+];
+
+// ══════════════════════════════════════════════
+// 종합병원 기준 — 다전문과 운영 중심
+// ══════════════════════════════════════════════
+const GENERAL_CHAPTERS: StandardChapter[] = [
+  { chapterNumber: '1', chapterTitle: '환자안전보장활동',
+    items: [
+      { itemNumber: '1.1', itemTitle: '환자를 정확하게 확인한다', summary: '두 가지 이상 식별자 사용, 투약·수혈·검사 전 환자 확인 절차', requiredDocuments: ['환자 확인 규정'], requiredForms: ['환자 확인 오류 보고서'], requiredChecklists: ['환자 확인 이행 점검표'], requiredEvidence: ['오류 보고 현황'], officialCheckNeeded: false },
+      { itemNumber: '1.2', itemTitle: '의료진 의사소통 관리', summary: '구두처방·전화처방 확인 절차, 인수인계 표준화', requiredDocuments: ['의사소통 규정'], requiredForms: ['구두처방 확인서'], requiredChecklists: ['의사소통 점검표'], requiredEvidence: ['구두처방 이행 기록'], officialCheckNeeded: false },
+      { itemNumber: '1.3', itemTitle: '낙상 예방활동', summary: '낙상 위험 평가 도구 적용, 고위험군 예방 프로그램 운영', requiredDocuments: ['낙상 예방 규정'], requiredForms: ['낙상 위험 평가지','낙상 사고 보고서'], requiredChecklists: ['낙상 예방 점검표'], requiredEvidence: ['낙상 발생률'], officialCheckNeeded: false },
+      { itemNumber: '1.4', itemTitle: '손위생 수행', summary: '손위생 규정, 이행률 모니터링, 소독제 등 지원 자원 관리', requiredDocuments: ['손위생 규정'], requiredForms: ['손위생 관찰 기록지'], requiredChecklists: ['손위생 점검표'], requiredEvidence: ['손위생 수행률'], officialCheckNeeded: false },
+      { itemNumber: '1.5', itemTitle: '수술·시술 안전 확인', summary: '수술 전 Time-out, 수술 부위 표시 절차 운영', requiredDocuments: ['수술 안전 확인 규정'], requiredForms: ['수술 안전 체크리스트'], requiredChecklists: ['Time-out 점검표'], requiredEvidence: ['수술 안전 확인 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '2', chapterTitle: '진료전달체계와 평가',
+    items: [
+      { itemNumber: '2.1', itemTitle: '외래·응급환자 등록 및 진료 절차', summary: '외래·응급 등록, 중증도 분류(KTAS) 체계 운영', requiredDocuments: ['외래·응급 절차서'], requiredForms: ['중증도 분류 기록지'], requiredChecklists: ['응급 접수 점검표'], requiredEvidence: ['응급환자 분류 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.2', itemTitle: '입원 절차 및 환자 배정', summary: '입원 수속, 과별 환자 배정, 입원 안내 서비스 제공', requiredDocuments: ['입원 절차서'], requiredForms: ['입원 동의서'], requiredChecklists: ['입원 점검표'], requiredEvidence: ['입원 현황'], officialCheckNeeded: false },
+      { itemNumber: '2.3', itemTitle: '입원환자 초기평가 및 재평가', summary: '입원 24시간 내 초기평가, 상태 변화 시 재평가, 진료계획 수립', requiredDocuments: ['초기평가 규정'], requiredForms: ['초기평가지'], requiredChecklists: ['초기평가 이행 점검표'], requiredEvidence: ['초기평가 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.4', itemTitle: '협의진료 및 과간 연계', summary: '다과 협의진료 요청·회신 절차, 진료 연속성 보장', requiredDocuments: ['협의진료 규정'], requiredForms: ['협의진료 의뢰서'], requiredChecklists: ['협의진료 점검표'], requiredEvidence: ['협의진료 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.5', itemTitle: '퇴원 및 전원 관리', summary: '퇴원 계획, 전원 안전, 환자 교육 및 지역사회 연계', requiredDocuments: ['퇴원·전원 절차서'], requiredForms: ['퇴원 교육지','전원 의뢰서'], requiredChecklists: ['퇴원 절차 점검표'], requiredEvidence: ['전원 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.6', itemTitle: '검사·영상 서비스 운영', summary: '검체·영상검사 운영, 위험값 보고, 방사선 안전 관리', requiredDocuments: ['검사 운영 규정'], requiredForms: ['위험값 보고 기록지'], requiredChecklists: ['검사실 점검표'], requiredEvidence: ['위험값 보고 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '3', chapterTitle: '환자진료',
+    items: [
+      { itemNumber: '3.1', itemTitle: '치료계획 수립 및 이행', summary: '환자별 치료 계획 수립, 다과 참여, 계획 대비 이행 모니터링', requiredDocuments: ['치료계획 관리 규정'], requiredForms: ['치료계획서'], requiredChecklists: ['치료계획 이행 점검표'], requiredEvidence: ['치료계획 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.2', itemTitle: '수술·마취·진정 안전 관리', summary: '수술 계획, 마취 전 평가, 수술 동의서 취득, 회복실 관리', requiredDocuments: ['수술·마취 규정'], requiredForms: ['마취 전 평가지','수술 동의서'], requiredChecklists: ['수술 안전 점검표'], requiredEvidence: ['수술 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.3', itemTitle: '통증 관리', summary: '입원·외래 통증 평가 체계, 다학제 통증 관리 운영', requiredDocuments: ['통증 관리 규정'], requiredForms: ['통증 평가지'], requiredChecklists: ['통증 관리 점검표'], requiredEvidence: ['통증 평가 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.4', itemTitle: '욕창 예방 및 관리', summary: '입원 시 욕창 위험 평가, 예방 조치, 발생 시 치료 계획', requiredDocuments: ['욕창 관리 규정'], requiredForms: ['욕창 위험 평가지','욕창 기록지'], requiredChecklists: ['욕창 예방 점검표'], requiredEvidence: ['욕창 발생률'], officialCheckNeeded: false },
+      { itemNumber: '3.5', itemTitle: '영양 지원 및 관리', summary: '영양 스크리닝, 영양집중지원(NST) 서비스, 경장·정맥 영양 관리', requiredDocuments: ['영양 관리 규정'], requiredForms: ['영양 스크리닝 도구','NST 의뢰서'], requiredChecklists: ['영양 지원 점검표'], requiredEvidence: ['영양 평가 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.6', itemTitle: '응급 및 심폐소생술(CPR) 관리', summary: '응급 대응 체계, CPR 교육, 비상 약품 및 장비 관리', requiredDocuments: ['응급 대응 규정'], requiredForms: ['CPR 기록지'], requiredChecklists: ['비상 장비 점검표'], requiredEvidence: ['CPR 수행 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '4', chapterTitle: '의약품관리',
+    items: [
+      { itemNumber: '4.1', itemTitle: '의약품관리체계 및 고위험의약품', summary: '의약품 전주기(선정·보관·처방·조제·투여·모니터링) 관리, 고위험의약품 이중 확인', requiredDocuments: ['의약품 관리 규정'], requiredForms: ['고위험의약품 확인서'], requiredChecklists: ['의약품 안전 점검표'], requiredEvidence: ['투약 오류 보고 현황'], officialCheckNeeded: false },
+      { itemNumber: '4.2', itemTitle: '의약품 처방·조제·투여 안전', summary: '처방 검토, 조제 오류 예방, 투여 전 5 Rights 확인', requiredDocuments: ['처방·조제 규정'], requiredForms: ['처방 검토 기록지'], requiredChecklists: ['투약 안전 점검표'], requiredEvidence: ['처방·조제 오류 현황'], officialCheckNeeded: false },
+      { itemNumber: '4.3', itemTitle: '혈액제제 및 수혈 안전 관리', summary: '수혈 전 검사, 교차시험, 수혈 이상반응 모니터링', requiredDocuments: ['수혈 안전 규정'], requiredForms: ['수혈 동의서','이상반응 보고서'], requiredChecklists: ['수혈 안전 점검표'], requiredEvidence: ['수혈 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '5', chapterTitle: '환자권리 존중 및 보호',
+    items: [
+      { itemNumber: '5.1', itemTitle: '환자 권리 보호 및 고충 처리', summary: '환자 권리 고지, 고충 접수·처리·피드백 체계 운영', requiredDocuments: ['환자 권리 규정'], requiredForms: ['고충 접수지'], requiredChecklists: ['환자 권리 점검표'], requiredEvidence: ['고충 처리 기록'], officialCheckNeeded: false },
+      { itemNumber: '5.2', itemTitle: '취약환자(노인·장애·외국인) 보호', summary: '취약 환자 식별·맞춤 서비스·안전 보호 체계 운영', requiredDocuments: ['취약환자 보호 규정'], requiredForms: ['취약환자 지원 기록지'], requiredChecklists: ['취약환자 관리 점검표'], requiredEvidence: ['취약환자 서비스 기록'], officialCheckNeeded: false },
+      { itemNumber: '5.3', itemTitle: '동의서 취득 관리', summary: '수술·검사·치료 전 동의서 취득, 설명 의무 이행', requiredDocuments: ['동의서 관리 규정'], requiredForms: ['수술 동의서','검사 동의서'], requiredChecklists: ['동의서 이행 점검표'], requiredEvidence: ['동의서 보관 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '6', chapterTitle: '질 향상 및 환자안전 활동',
+    items: [
+      { itemNumber: '6.1', itemTitle: '질 향상 운영체계', summary: '질향상위원회 운영, 성과지표 선정·모니터링·개선활동 수행', requiredDocuments: ['질 향상 규정'], requiredForms: ['질 향상 보고서'], requiredChecklists: ['질 향상 점검표'], requiredEvidence: ['질 향상 활동 실적'], officialCheckNeeded: false },
+      { itemNumber: '6.2', itemTitle: '환자안전사고 보고 및 분석', summary: '자발적 보고 문화 조성, 사고 분석·개선 활동', requiredDocuments: ['환자안전사고 규정'], requiredForms: ['사고 보고서'], requiredChecklists: ['사고 분석 점검표'], requiredEvidence: ['사고 보고 현황'], officialCheckNeeded: false },
+      { itemNumber: '6.3', itemTitle: '표준진료지침(CP) 운영', summary: '주요 질환 임상경로 개발·적용·평가', requiredDocuments: ['CP 관리 규정'], requiredForms: ['CP 이행 기록지'], requiredChecklists: ['CP 점검표'], requiredEvidence: ['CP 이행률'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '7', chapterTitle: '감염관리',
+    items: [
+      { itemNumber: '7.1', itemTitle: '감염관리 체계 운영', summary: '감염관리위원회·전담 인력 운영, 연간 계획 수립·시행', requiredDocuments: ['감염관리 규정'], requiredForms: ['감염관리 회의록'], requiredChecklists: ['감염관리 점검표'], requiredEvidence: ['감염관리 회의 실적'], officialCheckNeeded: false },
+      { itemNumber: '7.2', itemTitle: '의료관련감염(HAI) 감시·예방', summary: 'HAI 발생 감시·보고, 예방 번들(손위생·격리 등) 적용', requiredDocuments: ['HAI 감시 규정'], requiredForms: ['감염 발생 보고서'], requiredChecklists: ['HAI 예방 점검표'], requiredEvidence: ['감염률 현황'], officialCheckNeeded: false },
+      { itemNumber: '7.3', itemTitle: '의료기구·기기 세척·소독·멸균', summary: '기구별 소독·멸균 방법 관리, 유효기간·추적 관리', requiredDocuments: ['멸균·소독 규정'], requiredForms: ['멸균 기록지'], requiredChecklists: ['멸균 점검표'], requiredEvidence: ['멸균 이력'], officialCheckNeeded: false },
+      { itemNumber: '7.4', itemTitle: '직원 감염 예방·관리', summary: '의료종사자 혈액·체액 노출 관리, 예방 접종, 감염 교육', requiredDocuments: ['직원 감염 예방 규정'], requiredForms: ['노출 보고서'], requiredChecklists: ['직원 감염 예방 점검표'], requiredEvidence: ['예방 접종 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '8', chapterTitle: '경영 및 조직운영',
+    items: [
+      { itemNumber: '8.1', itemTitle: '경영진 리더십 및 조직 운영', summary: '병원 비전·목표 수립, 부서별 성과 관리, 위원회 운영', requiredDocuments: ['경영 관리 규정'], requiredForms: ['경영 계획서'], requiredChecklists: ['위원회 운영 점검표'], requiredEvidence: ['위원회 회의록'], officialCheckNeeded: false },
+      { itemNumber: '8.2', itemTitle: '의료기관 안전 계획(재난·화재)', summary: '화재·재난 대비 계획 수립, 대피 훈련, 비상 연락망 관리', requiredDocuments: ['재난 대응 계획서'], requiredForms: ['훈련 기록지'], requiredChecklists: ['안전 점검표'], requiredEvidence: ['훈련 실적'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '9', chapterTitle: '인적자원관리',
+    items: [
+      { itemNumber: '9.1', itemTitle: '직원 채용 및 자격 관리', summary: '면허·자격 검증, 적정 인력 배치, 정기 자격 갱신 관리', requiredDocuments: ['인사 관리 규정'], requiredForms: ['자격 확인 기록지'], requiredChecklists: ['채용 절차 점검표'], requiredEvidence: ['면허 관리 대장'], officialCheckNeeded: false },
+      { itemNumber: '9.2', itemTitle: '직원 교육·훈련 체계', summary: '신규·정기 교육 계획, 법정 의무교육, 부서별 직무 교육', requiredDocuments: ['교육 관리 규정'], requiredForms: ['교육 이수 확인서'], requiredChecklists: ['교육 이행 점검표'], requiredEvidence: ['교육 실적 대장'], officialCheckNeeded: false },
+      { itemNumber: '9.3', itemTitle: '직원 건강·안전 관리', summary: '직업성 노출(혈액·방사선 등) 관리, 근무 환경 위험 평가', requiredDocuments: ['직원 건강 안전 규정'], requiredForms: ['노출 보고서'], requiredChecklists: ['직원 안전 점검표'], requiredEvidence: ['건강 검진 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '10', chapterTitle: '시설 및 환경관리',
+    items: [
+      { itemNumber: '10.1', itemTitle: '의료기기·의료장비 점검 및 유지', summary: '의료기기 등록·정기 점검·교정·폐기 관리', requiredDocuments: ['의료기기 관리 규정'], requiredForms: ['장비 점검 기록지'], requiredChecklists: ['의료기기 점검표'], requiredEvidence: ['점검 이력'], officialCheckNeeded: false },
+      { itemNumber: '10.2', itemTitle: '의료폐기물 관리', summary: '의료폐기물 분리·보관·위탁 처리 절차 준수', requiredDocuments: ['의료폐기물 관리 규정'], requiredForms: ['폐기물 처리 대장'], requiredChecklists: ['폐기물 점검표'], requiredEvidence: ['처리 기록'], officialCheckNeeded: false },
+      { itemNumber: '10.3', itemTitle: '화재·재난 안전 관리', summary: '소방 시설 점검, 화재 대피 훈련, 비상 전력 관리', requiredDocuments: ['화재 안전 규정'], requiredForms: ['훈련 참석 기록지'], requiredChecklists: ['소방 안전 점검표'], requiredEvidence: ['훈련 실적'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '11', chapterTitle: '의료정보 및 의무기록 관리',
+    items: [
+      { itemNumber: '11.1', itemTitle: '의무기록 작성·보완·보존 관리', summary: '의무기록 완결도 관리, 법정 보존 기간 준수, 미완성 기록 관리', requiredDocuments: ['의무기록 관리 규정'], requiredForms: ['미완성 기록 관리 대장'], requiredChecklists: ['의무기록 완결도 점검표'], requiredEvidence: ['완결도 현황'], officialCheckNeeded: false },
+      { itemNumber: '11.2', itemTitle: '의료정보 보안 및 개인정보 보호', summary: 'EMR 접근 권한 관리, 개인정보 보호, 정보보안 교육', requiredDocuments: ['정보보안 규정'], requiredForms: ['접근 이력 확인서'], requiredChecklists: ['정보보안 점검표'], requiredEvidence: ['접근 권한 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '12', chapterTitle: '성과관리',
+    items: [
+      { itemNumber: '12.1', itemTitle: '환자안전·질 향상 성과지표 관리', summary: '핵심 성과지표(낙상·감염·재입원율 등) 수집·분석·개선', requiredDocuments: ['성과지표 관리 규정'], requiredForms: ['성과지표 보고서'], requiredChecklists: ['성과지표 점검표'], requiredEvidence: ['KPI 추이 자료'], officialCheckNeeded: false },
+    ],
+  },
+];
+
+// ══════════════════════════════════════════════
+// 병원급(30~99병상) 기준 — 소규모 병원 특화
+// ══════════════════════════════════════════════
+const HOSPITAL_CHAPTERS: StandardChapter[] = [
+  { chapterNumber: '1', chapterTitle: '환자안전보장활동',
+    items: [
+      { itemNumber: '1.1', itemTitle: '환자를 정확하게 확인한다', summary: '이름·생년월일 확인, 투약·처치 전 환자 확인 절차', requiredDocuments: ['환자 확인 규정'], requiredForms: ['환자 확인 오류 보고서'], requiredChecklists: ['환자 확인 점검표'], requiredEvidence: ['오류 보고 현황'], officialCheckNeeded: false },
+      { itemNumber: '1.2', itemTitle: '낙상 예방활동', summary: '낙상 위험 평가, 고위험 환자 표시 및 예방 조치', requiredDocuments: ['낙상 예방 규정'], requiredForms: ['낙상 위험 평가지'], requiredChecklists: ['낙상 예방 점검표'], requiredEvidence: ['낙상 발생 기록'], officialCheckNeeded: false },
+      { itemNumber: '1.3', itemTitle: '손위생 수행', summary: '손위생 규정, 수행률 모니터링, 소독제 비치 관리', requiredDocuments: ['손위생 규정'], requiredForms: ['손위생 관찰 기록지'], requiredChecklists: ['손위생 점검표'], requiredEvidence: ['손위생 수행률'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '2', chapterTitle: '진료전달체계와 평가',
+    items: [
+      { itemNumber: '2.1', itemTitle: '외래·입원환자 등록 및 진료 절차', summary: '외래·입원 수속 절차, 진료 정보 안내', requiredDocuments: ['진료 절차서'], requiredForms: ['입원 동의서','외래 등록 대장'], requiredChecklists: ['진료 절차 점검표'], requiredEvidence: ['진료 등록 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.2', itemTitle: '입원환자 초기평가', summary: '입원 24시간 내 초기평가, 진료계획 수립', requiredDocuments: ['초기평가 규정'], requiredForms: ['초기평가지'], requiredChecklists: ['초기평가 이행 점검표'], requiredEvidence: ['초기평가 기록'], officialCheckNeeded: false },
+      { itemNumber: '2.3', itemTitle: '퇴원 및 전원 관리', summary: '퇴원 계획·교육, 전원 안전 절차', requiredDocuments: ['퇴원·전원 절차서'], requiredForms: ['퇴원 교육지'], requiredChecklists: ['퇴원 절차 점검표'], requiredEvidence: ['전원 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '3', chapterTitle: '환자진료',
+    items: [
+      { itemNumber: '3.1', itemTitle: '통증 평가 및 관리', summary: '입원 시 통증 평가, 진통제 투여 후 재평가', requiredDocuments: ['통증 관리 규정'], requiredForms: ['통증 평가지'], requiredChecklists: ['통증 관리 점검표'], requiredEvidence: ['통증 평가 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.2', itemTitle: '욕창 예방 및 관리', summary: '욕창 위험 평가·예방 조치·발생 기록', requiredDocuments: ['욕창 관리 규정'], requiredForms: ['욕창 위험 평가지'], requiredChecklists: ['욕창 예방 점검표'], requiredEvidence: ['욕창 발생 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.3', itemTitle: '응급 및 CPR 대응', summary: '원내 응급 상황 대응 절차, 비상 약품·제세동기(AED) 관리', requiredDocuments: ['응급 대응 규정'], requiredForms: ['CPR 기록지'], requiredChecklists: ['비상 장비 점검표'], requiredEvidence: ['CPR 수행 기록'], officialCheckNeeded: false },
+      { itemNumber: '3.4', itemTitle: '수술·처치 안전 관리', summary: '소수술 동의서, 시술 전 확인 절차, 회복 모니터링', requiredDocuments: ['수술·처치 안전 규정'], requiredForms: ['시술 동의서'], requiredChecklists: ['수술 안전 점검표'], requiredEvidence: ['수술·처치 기록'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '4', chapterTitle: '의약품관리',
+    items: [
+      { itemNumber: '4.1', itemTitle: '의약품 보관·관리', summary: '의약품 구분 보관(냉장·상온·마약), 유효기간 관리', requiredDocuments: ['의약품 관리 규정'], requiredForms: ['의약품 재고 대장'], requiredChecklists: ['의약품 점검표'], requiredEvidence: ['재고 점검 기록'], officialCheckNeeded: false },
+      { itemNumber: '4.2', itemTitle: '의약품 처방·조제·투여 안전', summary: '처방 검토, 5 Rights 확인, 투약 오류 보고', requiredDocuments: ['투약 안전 규정'], requiredForms: ['처방 확인 기록지'], requiredChecklists: ['투약 안전 점검표'], requiredEvidence: ['투약 오류 보고'], officialCheckNeeded: false },
+      { itemNumber: '4.3', itemTitle: '마약류·향정신성의약품 관리', summary: '마약류 이중 잠금·사용 기록·재고 관리 절차', requiredDocuments: ['마약류 관리 규정'], requiredForms: ['마약류 사용 대장'], requiredChecklists: ['마약류 점검표'], requiredEvidence: ['마약류 사용 기록'], officialCheckNeeded: true },
+    ],
+  },
+  { chapterNumber: '5', chapterTitle: '환자권리 존중 및 보호',
+    items: [
+      { itemNumber: '5.1', itemTitle: '환자 권리 보호 및 불만 처리', summary: '환자 권리 안내, 고충 접수·처리 절차', requiredDocuments: ['환자 권리 규정'], requiredForms: ['고충 접수지'], requiredChecklists: ['환자 권리 점검표'], requiredEvidence: ['고충 처리 기록'], officialCheckNeeded: false },
+      { itemNumber: '5.2', itemTitle: '동의서 취득 관리', summary: '입원·수술·처치 동의서 취득, 설명 의무 이행', requiredDocuments: ['동의서 관리 규정'], requiredForms: ['입원 동의서','수술 동의서'], requiredChecklists: ['동의서 이행 점검표'], requiredEvidence: ['동의서 보관 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '6', chapterTitle: '질 향상 및 환자안전 활동',
+    items: [
+      { itemNumber: '6.1', itemTitle: '질 향상 활동 및 성과지표 관리', summary: '원내 성과지표 선정·수집·분석·개선활동 수행', requiredDocuments: ['질 향상 규정'], requiredForms: ['질 향상 활동 보고서'], requiredChecklists: ['성과지표 점검표'], requiredEvidence: ['성과 데이터'], officialCheckNeeded: false },
+      { itemNumber: '6.2', itemTitle: '환자안전사고 보고 및 개선', summary: '사고 자발적 보고, 원인 분석, 재발 방지 계획 수립', requiredDocuments: ['환자안전사고 관리 규정'], requiredForms: ['사고 보고서'], requiredChecklists: ['사고 관리 점검표'], requiredEvidence: ['사고 보고 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '7', chapterTitle: '감염관리',
+    items: [
+      { itemNumber: '7.1', itemTitle: '감염관리 체계 및 교육', summary: '감염관리 담당자 지정, 감염관리 규정·교육 운영', requiredDocuments: ['감염관리 규정'], requiredForms: ['교육 이수 확인서'], requiredChecklists: ['감염관리 점검표'], requiredEvidence: ['감염 교육 실적'], officialCheckNeeded: false },
+      { itemNumber: '7.2', itemTitle: '의료기구 소독·멸균 관리', summary: '기구별 소독·멸균 방법, 유효기간·사용 기록 관리', requiredDocuments: ['소독·멸균 규정'], requiredForms: ['멸균 기록지'], requiredChecklists: ['멸균 점검표'], requiredEvidence: ['멸균 이력'], officialCheckNeeded: false },
+      { itemNumber: '7.3', itemTitle: '격리 및 감염성 환자 관리', summary: '감염성 질환 환자 격리 지침, 격리 주의 표시 운영', requiredDocuments: ['격리 지침'], requiredForms: ['격리 확인 기록지'], requiredChecklists: ['격리 점검표'], requiredEvidence: ['격리 현황'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '8', chapterTitle: '경영 및 조직운영',
+    items: [
+      { itemNumber: '8.1', itemTitle: '원장 리더십 및 원내 위원회 운영', summary: '병원 목표 설정, 원내 위원회 구성·운영·회의록 관리', requiredDocuments: ['위원회 운영 규정'], requiredForms: ['위원회 회의록'], requiredChecklists: ['위원회 운영 점검표'], requiredEvidence: ['회의 실적'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '9', chapterTitle: '인적자원관리',
+    items: [
+      { itemNumber: '9.1', itemTitle: '직원 채용 및 면허·자격 관리', summary: '의사·간호사 면허 확인, 직원 배치 기준 관리', requiredDocuments: ['인사 관리 규정'], requiredForms: ['자격 확인 기록지'], requiredChecklists: ['채용 점검표'], requiredEvidence: ['면허 관리 대장'], officialCheckNeeded: false },
+      { itemNumber: '9.2', itemTitle: '직원 교육·훈련', summary: '신규 직원 오리엔테이션, 법정 의무교육, 직무 교육 시행', requiredDocuments: ['교육 관리 규정'], requiredForms: ['교육 이수 확인서'], requiredChecklists: ['교육 이행 점검표'], requiredEvidence: ['교육 실적'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '10', chapterTitle: '시설 및 환경관리',
+    items: [
+      { itemNumber: '10.1', itemTitle: '의료기기·장비 점검', summary: '의료기기 정기 점검, 이상 발생 시 보고·수리 절차', requiredDocuments: ['의료기기 관리 규정'], requiredForms: ['장비 점검 기록지'], requiredChecklists: ['기기 점검표'], requiredEvidence: ['점검 이력'], officialCheckNeeded: false },
+      { itemNumber: '10.2', itemTitle: '의료폐기물 및 환경위생 관리', summary: '의료폐기물 분리 보관, 환경 청결 유지 절차', requiredDocuments: ['의료폐기물 관리 규정'], requiredForms: ['폐기물 처리 대장'], requiredChecklists: ['환경위생 점검표'], requiredEvidence: ['폐기물 처리 기록'], officialCheckNeeded: false },
+      { itemNumber: '10.3', itemTitle: '화재·재난 안전 관리', summary: '소화기·화재 경보기 점검, 대피 훈련 실시', requiredDocuments: ['화재 안전 규정'], requiredForms: ['훈련 참석 기록지'], requiredChecklists: ['소방 안전 점검표'], requiredEvidence: ['훈련 실적'], officialCheckNeeded: false },
+    ],
+  },
+  { chapterNumber: '11', chapterTitle: '의무기록 및 정보관리',
+    items: [
+      { itemNumber: '11.1', itemTitle: '의무기록 작성 및 보존 관리', summary: '의무기록 완결도, 법정 보존 기간 관리', requiredDocuments: ['의무기록 관리 규정'], requiredForms: ['의무기록 점검 목록'], requiredChecklists: ['의무기록 점검표'], requiredEvidence: ['완결도 현황'], officialCheckNeeded: false },
+      { itemNumber: '11.2', itemTitle: '환자 개인정보 보호', summary: '환자 정보 접근 제한, 개인정보 동의, 정보 유출 예방', requiredDocuments: ['개인정보 보호 규정'], requiredForms: ['개인정보 동의서'], requiredChecklists: ['개인정보 보호 점검표'], requiredEvidence: ['접근 이력 기록'], officialCheckNeeded: false },
+    ],
+  },
+];
+
+
 // 카탈로그 매핑
 // ──────────────────────────────────────────────
 export const STANDARD_CATALOG: Record<HospitalTypeKey, CatalogEntry> = {
@@ -3471,9 +3746,9 @@ export const STANDARD_CATALOG: Record<HospitalTypeKey, CatalogEntry> = {
   psychiatric:    { isExample: false, officialCheckRequired: false, notice: '📋 6주기 정신의료기관 평가기준(3영역·11장·44기준·195ME) 구조 기반입니다.', chapters: PSYCHIATRIC_CHAPTERS },
   rehabilitation: { isExample: false, officialCheckRequired: false, notice: '📋 2주기 재활의료기관 인증기준 Ver.2.1(2025.12.공표·2026.2.1 적용) 구조 기반입니다.', chapters: REHABILITATION_CHAPTERS },
   acute:          { isExample: false, officialCheckRequired: false, notice: '📋 급성기병원 인증기준 Ver.5.0(2025.12.공표·2026.9.1 적용) — 13장·92기준 공식 구조 반영 (병원급)', chapters: ACUTE_CHAPTERS },
-  tertiary:       { isExample: false, officialCheckRequired: false, notice: '📋 급성기병원 인증기준 Ver.5.0(2025.12.공표·2026.9.1 적용) — 13장·92기준 공식 구조 반영 (상급종합병원 포함)', chapters: ACUTE_CHAPTERS },
-  general:        { isExample: false, officialCheckRequired: false, notice: '📋 급성기병원 인증기준 Ver.5.0(2025.12.공표·2026.9.1 적용) 구조 기반입니다.', chapters: ACUTE_CHAPTERS },
-  hospital:       { isExample: false, officialCheckRequired: false, notice: '📋 급성기병원 인증기준 Ver.5.0(2025.12.공표·2026.9.1 적용) 구조 기반입니다.', chapters: ACUTE_CHAPTERS },
+  tertiary:       { isExample: false, officialCheckRequired: false, notice: '📋 급성기병원 인증기준(상급종합병원 포함) Ver.5.0 — 12장·장기이식·임상연구·다학제 진료·RRT 등 상급종합 특화 항목 반영', chapters: TERTIARY_CHAPTERS },
+  general:        { isExample: false, officialCheckRequired: false, notice: '📋 급성기병원 인증기준 Ver.5.0 종합병원 적용 — 다전문과 운영·협의진료·응급·수술 중심 12장 구조', chapters: GENERAL_CHAPTERS },
+  hospital:       { isExample: false, officialCheckRequired: false, notice: '📋 급성기병원 인증기준 Ver.5.0 병원급(30~99병상) 적용 — 소규모 병원 특화 11장 구조', chapters: HOSPITAL_CHAPTERS },
   dental:         { isExample: false, officialCheckRequired: false, notice: '📋 4주기 치과병원 인증기준(Ver.4.1) — 13장·61기준 공식 구조 반영. 2.4.x 기공물·기공실 및 5장 수술·마취진정관리는 치과병원 특화 기준.', chapters: DENTAL_CHAPTERS },
   korean:         { isExample: false, officialCheckRequired: false, notice: '📋 4주기 한방병원 인증조사 표준지침서(2024.12.) — 11장 공식 구조 반영. 4.2.1 한방서비스·5.1 한약재관리는 한방병원 특화 기준. (※ HWP DRM으로 세부 조사항목은 공식 문서 병행 확인 권장)', chapters: KOREAN_CHAPTERS },
   other:          { isExample: true, officialCheckRequired: true, notice: '⚠️ 예시 목차입니다. 해당 의료기관 유형의 공식 인증기준집을 업로드 후 사용하세요.', chapters: DEFAULT_CHAPTERS },
