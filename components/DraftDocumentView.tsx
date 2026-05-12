@@ -417,11 +417,11 @@ export default function DraftDocumentView({ doc, disclaimer }: Props) {
           )}
 
           {/* 참고문헌 */}
-          {doc.references?.length > 0 && (
+          {(doc.references?.length ?? 0) > 0 && (
             <section>
               <SectionTitle>참고문헌</SectionTitle>
               <ol className="space-y-1">
-                {doc.references.map((r, i) => (
+                {(doc.references ?? []).map((r, i) => (
                   <li key={i} className="text-gray-600 text-xs">
                     {i + 1}. {r.replace(/^\d+[.)]\s*/, '')}
                   </li>
@@ -431,11 +431,11 @@ export default function DraftDocumentView({ doc, disclaimer }: Props) {
           )}
 
           {/* 부록 */}
-          {doc.appendices?.length > 0 && (
+          {(doc.appendices?.length ?? 0) > 0 && (
             <section>
               <SectionTitle>부록</SectionTitle>
               <ol className="space-y-1">
-                {doc.appendices.map((a, i) => (
+                {(doc.appendices ?? []).map((a, i) => (
                   <li key={i} className="text-gray-700 text-xs">{a}</li>
                 ))}
               </ol>
