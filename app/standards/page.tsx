@@ -1,14 +1,21 @@
 'use client';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { HOSPITAL_TYPES } from '@/lib/hospitalTypes';
 import { STANDARD_CATALOG } from '@/lib/standardCatalog';
 import { HospitalTypeKey } from '@/lib/types';
 import StandardNavigator from '@/components/StandardNavigator';
 import { BookOpen } from 'lucide-react';
 
-export default function StandardsPage() {
+function StandardsContent() {
+  const searchParams = useSearchParams();
+  const paramType = searchParams.get('type') as HospitalTypeKey | null;
   const hospitals = Object.values(HOSPITAL_TYPES);
-  const [selectedType, setSelectedType] = useState<HospitalTypeKey>('nursing');
+  const validKeys = hospitals.map(h => h.key);
+  const initialType: HospitalTypeKey =
+    paramType && validKeys.includes(paramType) ? paramType : 'nursing';
+
+  const [selectedType, setSelectedType] = useState<HospitalTypeKey>(initialType);
 
   const catalog = STANDARD_CATALOG[selectedType];
   const hospital = HOSPITAL_TYPES[selectedType];
@@ -18,7 +25,8 @@ export default function StandardsPage() {
       <div className="mb-6">
         <h1 className="text-3xl font-black text-gray-900 mb-2">인증기준집 탐색</h1>
         <p className="text-gray-500">
-          병원 유형별 공식 인증기준집 목차를 확인하고, 필요한 문서를 <span className="text-blue-600 font-semibold">클릭 한 번</span>으로 바로 생성하세요
+          병원 유형별 공식 인증기준집 목차를 확인하고, 필요한 문서를{' '}
+          <span className="text-blue-600 font-semibold">클릭 한 번</span>으로 바로 생성하세요
         </p>
       </div>
 
@@ -27,7 +35,7 @@ export default function StandardsPage() {
         {hospitals.map(h => (
           <button
             key={h.key}
-            onClick={() => setSelectedType(h.key)}
+            onClick={() => setSelectedType(h.key as HospitalTypeKey)}
             className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-colors ${
               selectedType === h.key
                 ? 'bg-blue-600 text-white shadow'
@@ -50,7 +58,7 @@ export default function StandardsPage() {
         </p>
       </div>
 
-      {/* 기준집 정보 */}
+      {/* 기준집 안내 */}
       {catalog && (
         <div className="mb-4 p-4 bg-gray-50 border border-gray-200 rounded-xl flex items-start gap-2">
           <BookOpen className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" />
@@ -67,5 +75,13 @@ export default function StandardsPage() {
         />
       )}
     </div>
+  );
+}
+
+export default function StandardsPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-gray-400">로딩 중...</div>}>
+      <StandardsContent />
+    </Suspense>
   );
 }

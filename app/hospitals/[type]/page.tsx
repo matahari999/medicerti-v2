@@ -115,7 +115,7 @@ export default function HospitalDetailPage({ params }: { params: Promise<{ type:
           {/* 버튼 2개 */}
           <div className="grid grid-cols-2 gap-3">
             <Link
-              href="/standards"
+              href={`/standards?type=${hospital.key}`}
               className="flex items-center justify-center gap-1.5 bg-white border-2 border-blue-200 text-blue-700 py-3 rounded-xl font-semibold text-sm hover:bg-blue-50 transition-colors"
             >
               <BookOpen className="w-4 h-4" />
