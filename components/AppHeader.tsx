@@ -6,6 +6,7 @@ import { Menu, X, LogOut } from 'lucide-react';
 import MediLogo from './MediLogo';
 
 const navItems = [
+  { href: '/notices', label: '공지사항' },
   { href: '/hospitals', label: '병원 유형 선택' },
   { href: '/standards', label: '기준집 탐색' },
   { href: '/generate', label: '문서 생성' },
