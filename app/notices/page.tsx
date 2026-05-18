@@ -131,7 +131,7 @@ export default function NoticesPage() {
 
   // 탭 목록
   const tabs = [
-    { key: 'all', label: '전체', count: allNotices.length },
+    { key: 'all', label: '전체', count: allNotices.length, color: '' },
     ...results.map((r) => ({
       key: r.source,
       label: r.sourceName,
