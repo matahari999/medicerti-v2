@@ -1,8 +1,8 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
 import MediLogo from './MediLogo';
 
 const navItems = [
@@ -16,7 +16,14 @@ const navItems = [
 
 export default function AppHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  async function handleLogout() {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    router.push('/login');
+    router.refresh();
+  }
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -48,7 +55,7 @@ export default function AppHeader() {
             ))}
           </nav>
 
-          {/* CTA + Mobile toggle */}
+          {/* CTA + 로그아웃 + Mobile toggle */}
           <div className="flex items-center gap-2">
             <Link
               href="/generate"
@@ -57,6 +64,14 @@ export default function AppHeader() {
               <MediLogo size={16} />
               문서 생성하기
             </Link>
+            <button
+              onClick={handleLogout}
+              title="로그아웃"
+              className="hidden sm:inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-100 transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+              로그아웃
+            </button>
             <button
               className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -87,6 +102,13 @@ export default function AppHeader() {
               <MediLogo size={16} />
               문서 생성하기
             </Link>
+            <button
+              onClick={handleLogout}
+              className="flex items-center justify-center gap-2 w-full mt-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100"
+            >
+              <LogOut className="w-4 h-4" />
+              로그아웃
+            </button>
           </div>
         )}
       </div>
